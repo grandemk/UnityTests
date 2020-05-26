@@ -8,14 +8,15 @@ using Random = UnityEngine.Random;
 public class Draw : MonoBehaviour
 {
     public Material LineMaterial = null;
-    public List<GenTree> curLeaves = new List<GenTree>();
+    private List<GenTree> curLeaves = new List<GenTree>();
 
-    Color trunkColor = ToColor("794A1C");
-    Color leavesColor = ToColor("133609");
+    private Color trunkColor = ToColor("794A1C");
+    private Color leavesColor = ToColor("133609");
 
-    float leavesThreshold = 0.3f;
-    int numIteration = 0;
+    private float leavesThreshold = 0.3f;
     bool paused = false;
+    private float iterationSpeed = 0.15f;
+    int numIteration = 0;
     int maxIteration = 10;
 
     LineRenderer CreateLine(Vector3 a, Vector3 b, Color color)
@@ -108,7 +109,7 @@ public class Draw : MonoBehaviour
                 curLeaves.RemoveAt(i);
             }
             curLeaves.AddRange(toAdd);
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(iterationSpeed);
         }
     }
 
